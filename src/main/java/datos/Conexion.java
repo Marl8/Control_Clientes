@@ -12,6 +12,8 @@ public class Conexion {
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "4842";
     
+    private static BasicDataSource dataSource; 
+    
     
     public static void ClassForName(){
         
@@ -26,13 +28,17 @@ public class Conexion {
     public static DataSource getDataSource(){
         
         ClassForName();
-        BasicDataSource ds = new BasicDataSource();
-        ds.setUrl(JDBC_URL);
-        ds.setUsername(JDBC_USER);
-        ds.setPassword(JDBC_PASSWORD);
-        ds.setInitialSize(50); // Numero de conexiones
         
-        return ds;
+        if(dataSource == null){
+        
+        dataSource = new BasicDataSource();
+        dataSource.setUrl(JDBC_URL);
+        dataSource.setUsername(JDBC_USER);
+        dataSource.setPassword(JDBC_PASSWORD);
+        dataSource.setInitialSize(50); // Numero de conexiones
+        }
+        
+        return dataSource;
     }
     
     public static Connection getConexion() throws SQLException, ClassNotFoundException{

@@ -20,13 +20,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="cliente" items="${clientes}">
+                                <c:forEach var="cliente" items="${clientes}"  varStatus="varStatus">
                                     <tr>
-                                        <td>${cliente.idCliente}</td>
+                                        <td>${varStatus.count}</td>
                                         <td>${cliente.nombre} ${cliente.apellido}</td>
                                         <td><fmt:formatNumber value="${cliente.saldo}" type="currency"/></td>  
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/controladoraccion=editar&idCliente=${cliente.idCliente}"
+                                            <a href="${pageContext.request.contextPath}/controlador?accion=editar&idCliente=${cliente.idCliente}"
                                                class="btn btn-secondary">
                                                 <i class="fas fa-angle-double-right pe-2"></i>Editar
                                             </a>
@@ -59,3 +59,8 @@
             </div>
         </div>
     </section>
+
+    <!-- Agregar cliente Modal -->
+    
+ 
+    <%@include file="/WEB-INF/clientes/agregarCliente.jsp"%>

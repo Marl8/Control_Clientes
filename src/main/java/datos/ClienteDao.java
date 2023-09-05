@@ -5,18 +5,16 @@ import java.sql.*;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelos.Cliente;
 
 
 public class ClienteDao {
     
     private static final String SQL_SELECT = "SELECT * FROM clientes";
-    private static final String SQL_SELECT_ID = "SELECT * FROM clientes WHERE id_cliente = ?";
+    private static final String SQL_SELECT_ID = "SELECT * FROM clientes WHERE id_clientes = ?";
     private static final String SQL_INSERT = "INSERT INTO clientes (NOMBRE, APELLIDO, EMAIL, TELEFONO, SALDO) VALUES(?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE clientes SET nombre = ?, apellido = ?, email = ?, telefono = ?, saldo = ? WHERE id_cliente = ?";
-    private static final String SQL_DELETE = "DELETE * FROM clientes WHERE id_cliente = ?";
+    private static final String SQL_UPDATE = "UPDATE clientes SET nombre = ?, apellido = ?, email = ?, telefono = ?, saldo = ? WHERE id_clientes = ?";
+    private static final String SQL_DELETE = "DELETE FROM clientes WHERE id_clientes = ?";
     
     
     public List<Cliente> listar (){
@@ -68,8 +66,9 @@ public class ClienteDao {
             ps.setInt(1, cliente.getIdCliente());
             rs = ps.executeQuery();
 
-            rs.absolute(1); // se posiciona en la primer fila
-
+            //rs.absolute(1);//nos posicionamos en el primer registro devuelto
+            rs.next();
+            
             String nombre = rs.getString("nombre");
             String apellido = rs.getString("apellido");
             String email = rs.getString("email");
