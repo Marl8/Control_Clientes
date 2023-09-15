@@ -2,7 +2,7 @@
 
 <br>
 
-Proyecto de java web realizado con NetBeans, utilizando JSTL con un CRUD a una base de datos MySQL. 
+Proyecto de java web realizado con NetBeans consistente en un sistema de gestion de clientes, utilizando JSTL con un CRUD a una base de datos MySQL. 
 
 <br>
 
